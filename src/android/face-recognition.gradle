@@ -1,0 +1,27 @@
+android {
+    ndkVersion "21.3.6528147"
+
+    defaultConfig {
+        ndk {
+            // 设置支持的SO库架构 可以按照app需要进行设置
+            // sdk默认有'armeabi', 'armeabi-v7a',  'arm64-v8a'三个平台
+            abiFilters 'armeabi' , 'armeabi-v7a',  'arm64-v8a'
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs' //this way we can find the .aar file in libs folder
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //0. appcompat-v7
+    implementation 'com.android.support:appcompat-v7:26.0.2'
+    //1. 云刷脸SDK
+    implementation(name: 'WbCloudFaceLiveSdk-v3.2.1-e8e26098', ext: 'aar')
+    //2. 云common SDK
+    implementation(name: 'WbCloudNormal-v4.0.14-b005c6b', ext: 'aar')
+}

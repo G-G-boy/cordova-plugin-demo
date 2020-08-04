@@ -14,7 +14,12 @@
             </feature>
         </config-file>
 
+        <framework src="src/android/face-recognition.gradle" custom="true" type="gradleReference"/>
+
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+
+        <lib-file src="src/android/libs/WbCloudFaceLiveSdk-v3.2.1-e8e26098.aar" />
+        <lib-file src="src/android/libs/WbCloudNormal-v4.0.14-b005c6b.aar" />
 
         <source-file src="src/android/FaceRecognition.java" target-dir="src/org/apache/cordova/facerecognition"/>
     </platform>
