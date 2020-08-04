@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-face-recognition" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-face-recognition</name>
+
+    <js-module name="FaceRecognition" src="www/FaceRecognition.js">
+        <clobbers target="FaceRecognition"/>
+    </js-module>
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="FaceRecognition">
+                <param name="android-package" value="org.apache.cordova.facerecognition.FaceRecognition"/>
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+
+        <source-file src="src/android/FaceRecognition.java" target-dir="src/org/apache/cordova/facerecognition"/>
+    </platform>
+</plugin>
