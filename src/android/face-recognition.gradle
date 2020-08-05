@@ -1,5 +1,5 @@
 android {
-    ndkVersion "21.3.6528147"
+    ndkVersion "21.0.6113669"
 
     defaultConfig {
         ndk {
