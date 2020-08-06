@@ -30,7 +30,13 @@ import com.webank.mbank.wehttp.WeReq;
 public class FaceRecognition extends CordovaPlugin {
     private static final String TAG = "FaceVerifyDemoActivity";
 
+    private static final String WB_APP_ID = "wbappid";
+    private static final String KEY_LICENCE = "keylicence";
+
     private SignUseCase signUseCase = new SignUseCase(this);
+
+    private static String appId;
+    private static String keyLicence;
 
     private String name = "";
     private String id = "";
@@ -38,21 +44,33 @@ public class FaceRecognition extends CordovaPlugin {
     private String userId = "WbFaceVerifyAll" + System.currentTimeMillis();
     private String nonce = "52014832029547845621032584562012";
     private String compareType = WbCloudFaceContant.NONE;
-    private String keyLicence = "NwKivlx4CuaA0r1Ri/x7VGugcN5bfIUm9Q0ZfUHmr2R6mjwuZUGRUNL+ydQhfRjaCl4s+YdUnVPxGGBfxCeSYpHk0AZIRUHUy5TETKUlSKrolSR+svPde8ZImxQhXIK5Tyr+zweHGZpPzOsuYglLuPeECYNGtDfw+4pTEIXFkwBbUMuoAt/RcLBxGpjB8Ol5meMP/8A10YfWJwPvuhVttMxXX7fIqPVxrC7bMRG8Y0AXUJQtJmFR8u35BvCY1YZYrQ3puOHTVvAdOJH53+w+kKVt1sMzVaa/1qnjgNHtC8DkHJ6+FJx5nOn2Etah7oWKE4dQrd+HOjXQeWFRdb9/ww==";
+
+
+    //插件初始化
+    @Override
+    protected void pluginInitialize() {
+        super.pluginInitialize();
+
+        appId = preferences.getString(WB_APP_ID, "");
+        keyLicence = preferences.getString(KEY_LICENCE, "");
+        Log.e("appId------", appId);
+        Log.e("keyLicence------", keyLicence);
+
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("coolMethod")) {
+        if (action.equals("startFaceRecognition")) {
             String message = args.getString(0);
-            this.coolMethod(message, callbackContext);
+            this.startFaceRecognition(message, callbackContext);
             return true;
         }
         return false;
     }
 
-    private void coolMethod(String message, CallbackContext callbackContext) {
+    private void startFaceRecognition(String message, CallbackContext callbackContext) {
         if (message != null && message.length() > 0) {
-            Toast.makeText(cordova.getContext(), "11111111111", Toast.LENGTH_SHORT).show();
+            Toast.makeText(cordova.getContext(), "调用人脸识别sdk", Toast.LENGTH_SHORT).show();
             checkOnId("data_mode_act");
             callbackContext.success(message);
         } else {
@@ -61,8 +79,6 @@ public class FaceRecognition extends CordovaPlugin {
     }
 
     private void checkOnId(String mode) {
-        String appId = "TIDA0001";
-
         //自带源和活体对比不需要姓名 身份证
         Log.i(TAG, "No need check Param!");
         name = "";
@@ -76,7 +92,6 @@ public class FaceRecognition extends CordovaPlugin {
         final FaceVerifyStatus.Mode mode = FaceVerifyStatus.Mode.ACT;
 
         String order = "testReflect" + System.currentTimeMillis();
-        String appId = "TIDA0001";
 
         Log.e("name----", name);
         Log.e("id----", id);

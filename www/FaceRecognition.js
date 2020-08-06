@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
 
-exports.coolMethod = function (arg0, success, error) {
-    exec(success, error, 'FaceRecognition', 'coolMethod', [arg0]);
+exports.startFaceRecognition = function (arg0, success, error) {
+    exec(success, error, 'FaceRecognition', 'startFaceRecognition', [arg0]);
 };

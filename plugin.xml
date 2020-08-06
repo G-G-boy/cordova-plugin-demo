@@ -3,6 +3,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-plugin-face-recognition</name>
 
+    <preference name="WBAPPID" />
+    <preference name="KEYLICENCE" />
+
     <js-module name="FaceRecognition" src="www/FaceRecognition.js">
         <clobbers target="FaceRecognition"/>
     </js-module>
@@ -12,6 +15,8 @@
             <feature name="FaceRecognition">
                 <param name="android-package" value="org.apache.cordova.facerecognition.FaceRecognition"/>
             </feature>
+            <preference name="WBAPPID" value="$WBAPPID" />
+            <preference name="KEYLICENCE" value="$KEYLICENCE" />
         </config-file>
 
         <framework src="src/android/face-recognition.gradle" custom="true" type="gradleReference"/>
@@ -21,6 +26,7 @@
         <lib-file src="src/android/libs/WbCloudFaceLiveSdk-v3.2.1-e8e26098.aar" />
         <lib-file src="src/android/libs/WbCloudNormal-v4.0.14-b005c6b.aar" />
 
-        <source-file src="src/android/FaceRecognition.java" target-dir="src/org/apache/cordova/facerecognition"/>
+        <source-file src="src/android/FaceRecognition.java" target-dir="src/org/apache/cordova/facerecognition/"/>
+        <source-file src="src/android/SignUseCase.java" target-dir="src/org/apache/cordova/facerecognition/"/>
     </platform>
 </plugin>
